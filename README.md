@@ -1,5 +1,4 @@
-# brawl
-## lesbian cardgames
+![Brawl](http://i.imgur.com/VEubJqR.png)
 
 ###  [![Climate][codeclimate-image]][codeclimate-url] [![Coverage][coverage-image]][coverage-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
