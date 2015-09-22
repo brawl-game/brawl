@@ -26,4 +26,4 @@ MIT © [Nico Hämäläinen](http://sizeof.io/)
 [codeclimate-image]: https://codeclimate.com/github/brawl-game/piston/badges/gpa.svg
 [codeclimate-url]: https://codeclimate.com/github/brawl-game/piston
 [coverage-image]: https://codeclimate.com/github/brawl-game/piston/badges/coverage.svg
-[coverage-url]: https://codeclimate.com/github/brawl-game/piston/coverag
+[coverage-url]: https://codeclimate.com/github/brawl-game/piston/coverage
