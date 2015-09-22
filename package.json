@@ -1,9 +1,9 @@
 {
-  "name": "brawl",
+  "name": "piston",
   "version": "0.0.0",
   "description": "lesbian card games",
-  "homepage": "http://github.com/brawl-game/brawl",
-  "repository": "brawl-game/brawl",
+  "homepage": "http://github.com/brawl-game/piston",
+  "repository": "brawl-game/piston",
   "author": {
     "name": "Nico Hämäläinen",
     "email": "nico@sizeof.io",

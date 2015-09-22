@@ -1,8 +1,8 @@
 import assert from 'assert';
-import brawl from '../lib';
+import greet from '../lib';
 
-describe('brawl', function () {
+describe('greet', function () {
   it('should have unit test!', function () {
-    assert(brawl('test') === 'Hello test', 'we expected this package author to add actual unit tests.');
+    assert(greet('test') === 'Hello test', 'we expected this package author to add actual unit tests.');
   });
 });
