@@ -3,6 +3,16 @@
 
 ###  [![Climate][codeclimate-image]][codeclimate-url] [![Coverage][coverage-image]][coverage-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
+## Ingredients
+
+- Babel (ES2015 & flowtype)
+- ESLint (Static Analysis)
+- Istanbul (Code Coverage)
+- Mocha (Test Runner)
+- Chai (Test Matchers)
+- Travis CI (Continuous Integration)
+- Code Climate (Code Quality)
+
 ## License
 
 MIT © [Nico Hämäläinen](http://sizeof.io/)
