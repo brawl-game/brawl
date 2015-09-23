@@ -10,7 +10,9 @@ var isparta = require('isparta');
 
 // Initialize the babel transpiler so ES2015 files gets compiled
 // when they're loaded
-require('babel-core/register');
+require('babel-core/register')({
+  stage: 0
+});
 
 gulp.task('static', function () {
   return gulp.src('**/*.js')
@@ -50,7 +52,7 @@ gulp.task('test', ['pre-test'], function (cb) {
 
 gulp.task('babel', function () {
   return gulp.src('lib/**/*.js')
-    .pipe(babel())
+    .pipe(babel({stage: 0}))
     .pipe(gulp.dest('dist'));
 });
 
