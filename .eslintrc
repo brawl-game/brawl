@@ -132,5 +132,5 @@
   "ecmaFeatures": {
     "modules": true
   },
-  plugins: ["flowtype"]
+  "parser": "babel-eslint"
 }
