@@ -1,6 +1,6 @@
 // Dependencies
 import { expect } from 'chai';
-import Genealogy from '../../lib/utilities/genealogy';
+import genealogy from '../../lib/utilities/genealogy';
 
 // Helpers
 
@@ -48,7 +48,7 @@ describe('Genealogy', () => {
   });
 
   it('should apply the mixin correctly', () => {
-    Genealogy(Larva);
+    genealogy(Larva);
     expect(barry.isDescendantOf(larry)).to.equal(true);
     expect(larry.isAncestorOf(barry)).to.equal(true);
     expect(caleb.isDescendantOf(larry)).to.equal(true);
@@ -58,9 +58,9 @@ describe('Genealogy', () => {
     let barryTree = barry.constructorTree();
     let calebTree = caleb.constructorTree();
     let larryTree = larry.constructorTree();
-    expect(barryTree).to.deep.equal(["Butterfly","Cocoon","Larva"]);
-    expect(calebTree).to.deep.equal(["Cocoon","Larva"]);
-    expect(larryTree).to.deep.equal(["Larva"]);
+    expect(barryTree).to.deep.equal(['Butterfly', 'Cocoon', 'Larva']);
+    expect(calebTree).to.deep.equal(['Cocoon', 'Larva']);
+    expect(larryTree).to.deep.equal(['Larva']);
   });
 
   it('should say that caleb and larry are barrys ancestors', () => {
