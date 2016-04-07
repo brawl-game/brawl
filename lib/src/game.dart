@@ -1,8 +1,4 @@
-library brawl.game;
-
-import 'package:events/events.dart';
-import "game_event.dart";
-import "player.dart";
+part of brawl;
 
 /// A single game in the brawl engine
 ///
@@ -14,11 +10,17 @@ class Game extends Object with Events {
   /// The currently active player's index in the [players] array.
   int currentPlayerIndex = 0;
 
+  /// History of the match.
+  List<String> history = [];
+
+  /// Add a string to the match [history].
+  void log(String value) {
+    this.history.add(value);
+    print(value);
+  }
+
   Game() {
-    /// Run death checks for all creatures after damage events
-    this.on(GameEventDeathCheck, (e) {
-      print("Implement death check.");
-    });
+    this.on(GameEvent, (e) => this.log(e.toString()));
   }
 
   /// Returns the currently active [Player] instance.
@@ -33,11 +35,39 @@ class Game extends Object with Events {
   int nextPlayerIndex() =>
     (this.currentPlayerIndex + 1) % (this.players.length);
 
+  /// Returns whether or not the game can be started.
+  bool isReady() =>
+    this.players.length % 2 == 0;
+
   /// Prepares the game to begin.
   void initialize() {
-    // TODO: Game.initialize() PRE_GAME_INIT hook and events.
-    this.startTurn();
+    // TODO:
+    // - Game.initialize() PRE_GAME_INIT hook and events.
+    // - Initial game state
+    // TODO: Randomize starting player
+    this.currentPlayerIndex = 0;
+
+    // Assign opponents
+    this.currentPlayer().opponent = this.currentOpponent();
+    this.currentOpponent().opponent = this.currentPlayer();
+
+    // Draw starting hands
+    this._drawStartingCards();
+
     // TODO: Game.initialize() POST_GAME_INIT hook and events.
+  }
+
+  void start() {
+    this.currentPlayer().mana = 1;
+    this.currentPlayer().manaSlots = 1;
+
+    this.players.forEach((player) {
+      while (player.hand.length < 4) {
+        player.drawCard();
+      }
+    });
+
+    this.startTurn();
   }
 
   void startTurn() {
@@ -60,5 +90,16 @@ class Game extends Object with Events {
     // Switch to next player and start their turn
     this.currentPlayerIndex = this.nextPlayerIndex();
     this.startTurn();
+  }
+
+  // MARK: Private
+
+  void _drawStartingCards() {
+    this.players.forEach((player) {
+      while (player.hand.length < 3) {
+        player.drawCard();
+      }
+    });
+    this.currentOpponent().drawCard();
   }
 }

@@ -1,8 +1,4 @@
-library brawl.game_entity;
-
-import 'package:events/events.dart';
-import "game.dart";
-import "player.dart";
+part of brawl;
 
 /// Generic [Player] owned game entity that belongs to a [Game].
 class GameEntity extends Object with Events {

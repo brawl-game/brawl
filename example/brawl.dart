@@ -1,39 +1,41 @@
-// Copyright (c) 2015, Nico Hämäläinen. All rights reserved. Use of this source code
-// is governed by a BSD-style license that can be found in the LICENSE file.
-
 library brawl.example;
 
 import 'package:brawl/brawl.dart';
-import 'package:logging/logging.dart';
+import 'dart:convert';
 
-main() {
-  Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen((LogRecord rec) {
-    print('${rec.level.name}: ${rec.time}: ${rec.message}');
-  });
-
+void main() async {
   // Set up a new game
   final game = new Game();
 
-  // Create some players
-  final mauno = new Player("Mauno", game);
-  final jonne = new Player("Jonne", game);
-  game.players.add(mauno);
-  game.players.add(jonne);
+  // Load card library
+  Resource libraryResource = new Resource("package:brawl/res/basic.json");
+  String libraryJSON;
+  await libraryResource.readAsString().then((data) {
+    libraryJSON = data;
+  });
+  final cardLibrary = new CardLibrary.fromJSONMap(new JsonDecoder().convert(libraryJSON));
 
-  mauno.on(GameEventTurnEnd, (_) {
-    print("Maunon vuoro on nyt ohi. ayy.");
+  // Create decks
+  var deckOne = new CardDeck("Test 1", cardLibrary.randomCardOfType(CardType.HERO).id, cardLibrary, []);
+  var deckTwo = new CardDeck("Test 2", cardLibrary.randomCardOfType(CardType.HERO).id, cardLibrary, []);
+
+  // Fill decks with cards
+  [deckOne, deckTwo].forEach((deck) {
+    while (deck.cards.length < 30) {
+      deck.cards.add(cardLibrary.randomCardOfType(CardType.CREATURE));
+    }
   });
 
-  final slime = new Character("Slime", 1, 2, game);
-  final blimp = new Character("Blimp", 1, 3, game);
-
-  slime.dealDamage(1, blimp);
+  // Create some players
+  final mauno = new Player("Mauno", deckOne);
+  final jonne = new Player("Jonne", deckTwo);
+  mauno.joinGame(game);
+  jonne.joinGame(game);
 
   // Prepare the game
   game.initialize();
-
-  // Some turns
-  game.endTurn();
-  game.endTurn();
+  game.start();
+  mauno.playCardAtIndex(0);
+  mauno.playCardAtIndex(0);
+  mauno.playCardAtIndex(0);
 }

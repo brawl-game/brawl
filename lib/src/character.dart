@@ -1,8 +1,4 @@
-library brawl.character;
-
-import "game_event.dart";
-import "game_entity.dart";
-import "game.dart";
+part of brawl;
 
 /// A single character in a match
 ///

@@ -8,8 +8,23 @@ environment:
   sdk: '>=1.0.0 <2.0.0'
 
 dependencies:
-  events: ">=0.0.0 <2.0.0"
+  events: any
+  polymer:
+    git:
+      url: git://github.com/dart-lang/polymer-dart.git
+      ref: behaviors
+  web_components: any
+  reflectable: any
+  cryptoutils: any
+
+transformers:
+- web_components:
+    entry_points:
+      - web/index.html
+- reflectable:
+    entry_points:
+      - web/index.dart
 
 dev_dependencies:
-  test: '^0.12.4+7'
   guinness: '>=0.1.17'
+  faker: '>=0.0.2'

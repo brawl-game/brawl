@@ -1,0 +1,34 @@
+{
+  "name": "Basic Library",
+  "cards": [
+    {
+      "id": 1,
+      "name": "Slimy Raider",
+      "attack": 2,
+      "health": 1,
+      "cost": 1,
+      "type": "CREATURE"
+    },
+    {
+      "id": 2,
+      "name": "Snot Slug",
+      "attack": 1,
+      "health": 5,
+      "cost": 3,
+      "type": "CREATURE"
+    },
+    {
+      "id": 3,
+      "name": "Slugger",
+      "is_hero": true,
+      "ability_card_id": 4,
+      "type": "HERO"
+    },
+    {
+      "id": 4,
+      "name": "Spit",
+      "cost": 2,
+      "type": "HERO_ABILITY"
+    }
+  ]
+}
